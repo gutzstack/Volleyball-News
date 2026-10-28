@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Dig — Nebraska Volleyball Wire</title>
+  <meta name="description" content="The latest college volleyball news, centered on the Nebraska Huskers and the volleyball state." />
+  <meta name="theme-color" content="#d00000" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="ticker" aria-label="Latest headlines">
+    <span class="ticker__label"><span class="pulse"></span>Live wire</span>
+    <div class="ticker__track"><div class="ticker__inner" id="ticker"></div></div>
+  </div>
+
+  <header class="masthead">
+    <div class="wrap masthead__inner">
+      <div class="masthead__meta">
+        <span id="today"></span>
+        <span class="dot">•</span>
+        <span>Lincoln, Nebraska</span>
+      </div>
+      <a href="./" class="brand" aria-label="The Dig home">
+        <svg class="brand__ball" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" stroke-width="3.5" />
+          <path d="M32 3c-6 10-6 22 0 29M32 32c8 4 20 4 28-3M32 32c-2 9-10 19-21 23M18 8c4 12 14 20 14 24M57 46c-12-2-22 0-25-14M6 40c11-4 22-8 26-8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+        </svg>
+        <span class="brand__name">The&nbsp;Dig</span>
+      </a>
+      <p class="masthead__tag">College volleyball news from the heart of the volleyball state</p>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" /></svg>
+      </button>
+    </div>
+  </header>
+
+  <nav class="filters" aria-label="Filter stories">
+    <div class="wrap filters__inner">
+      <div class="tabs" role="tablist" id="tabs">
+        <button role="tab" data-filter="all" aria-selected="true">All news</button>
+        <button role="tab" data-filter="huskers">Huskers</button>
+        <button role="tab" data-filter="state">Around Nebraska</button>
+        <button role="tab" data-filter="bigten">Big Ten</button>
+        <button role="tab" data-filter="national">National</button>
+      </div>
+      <label class="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+        <input type="search" id="search" placeholder="Search headlines" autocomplete="off" />
+      </label>
+    </div>
+  </nav>
+
+  <main class="wrap layout">
+    <section class="feed" aria-live="polite">
+      <div id="hero"></div>
+      <div class="section-head">
+        <h2 id="feedTitle">Latest</h2>
+        <span class="updated" id="updated"></span>
+      </div>
+      <div class="grid" id="grid"></div>
+      <button class="more" id="more" type="button" hidden>Load more stories</button>
+    </section>
+
+    <aside class="sidebar">
+      <div class="panel panel--red">
+        <h3>Sea of Red</h3>
+        <p>Nebraska has sold out every home volleyball match since 2001, the longest NCAA women's sellout streak ever, and drew more than 92,000 to Memorial Stadium in 2023.</p>
+        <a class="panel__cta" href="https://huskers.com/sports/volleyball/schedule" target="_blank" rel="noopener">See the Husker schedule →</a>
+      </div>
+
+      <div class="panel">
+        <h3>Around the state</h3>
+        <ol class="mini" id="stateList"></ol>
+      </div>
+
+      <div class="panel">
+        <h3>Quick links</h3>
+        <ul class="links">
+          <li><a href="https://huskers.com/sports/volleyball/roster" target="_blank" rel="noopener">Husker roster</a></li>
+          <li><a href="https://huskers.com/sports/volleyball/stats" target="_blank" rel="noopener">Season stats</a></li>
+          <li><a href="https://bigten.org/wvb/standings/" target="_blank" rel="noopener">Big Ten standings</a></li>
+          <li><a href="https://www.avca.org/polls/" target="_blank" rel="noopener">AVCA coaches poll</a></li>
+          <li><a href="https://www.ncaa.com/sports/volleyball-women/d1" target="_blank" rel="noopener">NCAA scoreboard</a></li>
+          <li><a href="https://gocreighton.com/sports/womens-volleyball" target="_blank" rel="noopener">Creighton Bluejays</a></li>
+          <li><a href="https://omavs.com/sports/womens-volleyball" target="_blank" rel="noopener">Omaha Mavericks</a></li>
+          <li><a href="https://nsaahome.org/volleyball/" target="_blank" rel="noopener">NSAA high school volleyball</a></li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p><strong>The Dig</strong> collects headlines from public news feeds and links to the original publishers. It is a fan project and isn't affiliated with the University of Nebraska.</p>
+    </div>
+  </footer>
+
+  <template id="cardTpl">
+    <article class="card">
+      <a class="card__link" target="_blank" rel="noopener">
+        <div class="card__art"></div>
+        <div class="card__body">
+          <div class="card__chips"></div>
+          <h3 class="card__title"></h3>
+          <p class="card__summary"></p>
+          <div class="card__meta">
+            <img class="card__favicon" alt="" width="16" height="16" loading="lazy" />
+            <span class="card__source"></span>
+            <span class="dot">•</span>
+            <time class="card__time"></time>
+          </div>
+        </div>
+      </a>
+    </article>
+  </template>
+
+  <script src="assets/app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "the-dig",
+  "private": true,
+  "description": "Nebraska-focused college volleyball news wire",
+  "type": "module",
+  "scripts": {
+    "fetch": "node scripts/fetch-news.mjs",
+    "serve": "python3 -m http.server 8080",
+    "dev": "node scripts/fetch-news.mjs && python3 -m http.server 8080"
+  },
+  "engines": { "node": ">=18" }
+}
